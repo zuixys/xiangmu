@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>歌曲</title>
+</head>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+<style>
+.hbtm {
+    width:1000px;
+	height: 55px;
+	background: #d8d7d7;
+	margin:auto;
+	display:flex;
+}
+.yi{
+    width: 1000px;
+    height: 800px;
+    display:flex;
+    margin:auto;
+}
+.fang{
+    width:400px;
+    height:800px;
+}
+.ci{
+    width:600px;
+    height:600px;
+}
+</style>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="w1200 posrel">
+            <a href="index" class="logo"><img src="/static/images/logo.png" ></a>
+            <div class="nav">
+                <ul>
+                    <li><a href="/index/">首页</a></li>
+                    <li><a href="#">推荐</a></li>
+                    <li><a href="#">排行榜</a></li>
+                    <li><a href="#">新碟上架</a></li>
+                    <li><a href="#">音乐人</a></li>
+                    <li><a href="/playlist/">我的音乐</a></li>
+                    {% if name %}
+					<li><a href="">{{ name }}</a></li>
+					<li><a href="/loginout">退出</a></li>
+					{% else %}
+					<li><a href="/login/">登录</a></li>
+					<li><a href="/zhuce/">注册</a></li>
+					{% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="background: #d8d7d7;">
+        <div class="hbtm" >
+            <div>
+                <a href="#">我的音乐</a>
+                <a href="#">朋友</a>
+                <a href="#">歌单</a>
+                <a href="#">主播电台</a>
+                <a href="#">歌手</a>
+                <a href="#">商城</a>
+            </div>
+            <div>
+                <form action="/ying/" method="get" >
+                    <input type="text" style="width:180px;height:30px;margin:10px 0px 0px 90px" placeholder="请输入搜索内容" name="keywords">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="yi">
+        <div class="fang">
+            <img src="{{infos.0.imgsrc}}" style="width:250px; height:300px; margin:60px;">
+            <audio id="audio" src="{{infos.0.mp3}}" controls style="width:100%"></audio>
+        </div>
+        <div class="ci">
+            <form action="/goodinfo/?mname={{infos.0.mname}}" method="post" style="margin:60px 100px ;" >
+                <input type="submit" value="添加">
+                <div>
+                    <li style="font-size:30px; font-weight:bold;"><input type="text" name="gename" value="{{infos.0.mname}}"></li>
+                    <li>
+                        <span style="float:left">歌手:<input type="text" name="singname" value="{{infos.0.pname}}"></span>
+                        <span style="float:right">专辑名:<input type="text" name="zhuanname" value="{{infos.0.tname}}"></span>
+                    </li>
+                </div>
+                <div style="">
+                    <textarea name="description" style="resize:none; font-size:20px;" cols="40" rows="20">{{infos.0.txt}}
+                    </textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

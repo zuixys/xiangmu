@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>歌单</title>
+    <link rel="stylesheet" href="http://localhost:63342/xiangmu/static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+    <style>
+        img{
+        margin-bottom:30px;
+        }
+        .one{
+        display:inline-block;
+        margin-bottom:50px;
+        }
+        table{
+        rules="none";
+        }
+    </style>
+</head>
+<body>
+	<div class="header">
+		<div class="w1200 posrel">
+			<a href="/index/" class="logo"><img src="/static/images/logo.png" alt="" /></a>
+			<div class="nav">
+				<ul>
+					<li><a href="/index/">首页</a></li>
+					<li><a href="#">推荐</a></li>
+					<li><a href="#">排行榜</a></li>
+					<li><a href="#">新碟上架</a></li>
+					<li><a href="#">音乐人</a></li>
+					<li><a href="#">我的歌单</a></li>
+					<li><a href="/login/">登录</a></li>
+					<li><a href="/zhuce/">注册</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>部门</title>
+    <link rel="stylesheet" href="http://localhost:63342/day5/static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+</head>
+<body>
+{% csrf_token %}
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <ul class="dropdown-menu">
+            <li><a href="#">个人资料</a></li>
+            <li><a href="#">我的信息</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">注销</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div>
+    <div class="container">
+        <img src="/static/images/sy16.jpg" alt="">
+        <div class="one">
+        <h3><b>我的音乐</b></h3>
+            </div>
+        <div class="two">
+        <button type="button" class="btn btn-default dropdown-toggle"  aria-expanded="false"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true">播放全部</span></button>
+        <button type="button" class="btn btn-default dropdown-toggle"  aria-expanded="false">添加到我的歌单</button>
+        <button type="button" class="btn btn-default dropdown-toggle"  aria-expanded="false">收藏</button>
+        <button type="button" class="btn btn-default dropdown-toggle"  aria-expanded="false"><span class="glyphicon glyphicon-paperclip" aria-hidden="true">链接</span></button>
+        </div>
+        <div>
+            <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+          <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+          我的歌单</div>
+
+      <!-- Table -->
+      <table class="table" >
+        <thead>
+          <tr>
+
+            <th>歌曲</th>
+            <th>歌手</th>
+            <th>专辑</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for obj in queryset %}
+          <tr>
+
+              <td>{{ obj.gename }}</td>
+              <td>{{ obj.singname }}</td>
+              <td>{{ obj.zhuanname }}</td>
+            <td>
+                <a class="btn btn-primary btn-xs" href="/add/">新建</a>
+<!--                <a class="btn btn-danger btn-xs" href="/depart/?nid={{obj.id}}">删除</a>-->
+                <a class="btn btn-danger btn-xs" href="/delete/?nid={{ obj.id }}">删除</a>
+            </td>
+          </tr>
+           {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="http://localhost:63342/xiangmu/static/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:63342/xiangmu/static/plugins/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+</body>
+</html>

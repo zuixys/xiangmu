@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<style>
+.hbtm {
+    width:1000px;
+	height: 55px;
+	background: #d8d7d7;
+	margin:auto;
+	display:flex;
+}
+</style>
+<body>
+<div class="container">
+	<div class="header">
+		<div class="w1200 posrel">
+			<a href="/index/" class="logo"><img src="/static/images/logo.png" alt="" /></a>
+			<div class="nav">
+				<ul>
+					<li><a href="/index/">首页</a></li>
+					<li><a href="#">推荐</a></li>
+					<li><a href="#">排行榜</a></li>
+					<li><a href="#">新碟上架</a></li>
+					<li><a href="#">音乐人</a></li>
+					<li><a href=http://127.0.0.1:8000/playlist/>我的歌单</a></li>
+					{% if name %}
+					<li><a href="">{{ name }}</a></li>
+					<li><a href="/loginout">退出</a></li>
+					{% else %}
+					<li><a href="/login/">登录</a></li>
+					<li><a href="/zhuce/">注册</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div style="background: #d8d7d7;">
+        <div class="hbtm" >
+            <div>
+                <a href="#">我的音乐</a>
+                <a href="#">朋友</a>
+                <a href="#">歌单</a>
+                <a href="#">主播电台</a>
+                <a href="#">歌手</a>
+                <a href="#">商城</a>
+            </div>
+            <div>
+                <form action="/ying/" method="get" >
+                    <input type="text" style="width:180px;height:30px;margin:10px 0px 0px 90px" placeholder="请输入搜索内容" name="keywords">
+                </form>
+            </div>
+        </div>
+    </div>
+	<div class="banner">
+		<div class="slide" id="slideContainer">
+			 <ul class="slideshow" id="slidesImgs">
+			      <li><a href="#"> <img src="/static/images/banner1.jpg" alt="" /></a></li>
+			      <li><a href="#"> <img src="/static/images/rmtj.jpg" alt="" /></a></li>
+			      <li><a href="#"> <img src="/static/images/phb.jpg"  alt="" /></a></li>
+			  </ul>
+			  <div class="slidebar" id="slideBar">
+			    <ul>
+			      <li class="on">1</li>
+			      <li>2</li>
+			      <li>3</li>
+			    </ul>
+			 </div>
+		</div>
+	</div>
+	<div class="index">
+		<div class="index1">
+			<div class="title">
+				<h1><em>·</em>热门推荐</h1>
+				<span>
+					<a href="#">华语</a> /
+					<a href="#">流行</a> /
+					<a href="#">摇滚</a> /
+					<a href="#">民谣</a> /
+					<a href="#">电子</a>
+				</span>
+				<a href="#" class="more">更多 ></a>
+			</div>
+			<div class="rmtj">
+				<ul class="clearfix">
+					{% for gedans in gedan %}
+					<li>
+						<div class="img">
+							<img src="{{ gedans.img }}" alt="" />
+
+						</div>
+						<div class="txt">
+							<p>{{ gedans.nr }}</p>
+							<p>播放量：{{ gedans.bfl }}万</p>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="index2">
+			<div class="title">
+				<h1><em>·</em>新碟上架</h1>
+				<a href="#" class="more">更多 ></a>
+			</div>
+			<div class="xdsj">
+				<ul class="clearfix">
+					{% for xindies in xindie %}
+					<li>
+						<div class="img">
+							<a href="/goodinfo/?mname={{xindies.mname}}&uid={{uid}}"><img src="{{ xindies.img }}" alt="" /></a>
+						</div>
+						<div class="txt">
+							<p>{{ xindies.mname }}</p>
+							<p>{{ xindies.zuozhe }}</p>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="index3">
+			<div class="title">
+				<h1><em>·</em>榜单</h1>
+				<a href="#" class="more">更多 ></a>
+			</div>
+			<div class="bd">
+				<div class="clearfix">
+					<div class="bditem">
+						<div class="clearfix">
+							<div class="img">
+								<img src="/static/images/sy15.jpg" alt="" />
+							</div>
+							<div class="txt">
+								<h1>飙升榜</h1>
+								<p>
+									<a href="#"><img src="/static/images/syico1.png" alt="" /></a>
+									<a href="#"><img src="/static/images/syico2.png" alt="" /></a>
+									<a href="#"><img src="/static/images/syico3.png" alt="" /></a>
+								</p>
+							</div>
+						</div>
+						<ul>
+							{% for biaoshengs in biaosheng %}
+								<li><a href="/goodinfo/?mname={{biaoshengs.mname}}&uid={{uid}}">{{ biaoshengs.bi }}. {{ biaoshengs.mname }}</a></li>
+							{% endfor %}
+							<li><a href="#">查看全部   ></a></li>
+						</ul>
+					</div>
+					<div class="bditem">
+						<div class="clearfix">
+							<div class="img">
+								<img src="/static/images/sy15.jpg" alt="" />
+							</div>
+							<div class="txt">
+								<h1>新歌榜</h1>
+								<p>
+									<a href="#"><img src="/static/images/syico1.png" alt="" /></a>
+									<a href="#"><img src="/static/images/syico2.png" alt="" /></a>
+									<a href="#"><img src="/static/images/syico3.png" alt="" /></a>
+								</p>
+							</div>
+						</div>
+						<ul>
+							{% for xinges in xinge %}
+								<li><a href="/goodinfo/?mname={{xinges.mname}}&uid={{uid}}">{{ xinges.xi }} .{{ xinges.mname }}</a></li>
+							{% endfor %}
+							<li><a href="#">查看全部   ></a></li>
+						</ul>
+					</div>
+					<div class="bditem">
+						<div class="clearfix">
+							<div class="img">
+								<img src="/static/images/sy16.jpg" alt="" />
+							</div>
+							<div class="txt">
+								<h1>热歌榜</h1>
+								<p>
+									<a href="#"><img src="/static/images/syico1.png" alt="" /></a>
+									<a href="#"><img src="/static/images/syico2.png" alt="" /></a>
+									<a href="#"><img src="/static/images/syico3.png" alt="" /></a>
+								</p>
+							</div>
+						</div>
+						<ul>
+							{% for reges in rege %}
+								<li><a href="/goodinfo/?mname={{reges.mname}}&uid={{uid}}">{{ reges.ri }}. {{ reges.mname }}</a></li>
+							{% endfor %}
+							<li><a href="#">查看全部   ></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		<p><a href="#">服务条款</a>| <a href="#">隐私政策</a>| <a href="#">儿童隐私政策</a>| <a href="#">版权投诉指引</a>| <a href="#">意见反馈</a> </p>
+		<p>网易公司版权所有©杭州乐读科技有限公司运营：浙网文[2018]3506-263号 </p>
+		<p>违法和不良信息举报电话：0571-89853516 举报邮箱：ncm5990@163.com </p>
+		<p>粤B2-20090191-18工业和信息化部备案管理系</p>
+	</div>
+</div>
+<script src="/static/js/Slidepic.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+
+
+
+
+		.ts{
+			width:350px;
+			height:30px;
+		}
+
+</style>
+</head>
+<body>
+<div class="container">
+	<div class="header">
+		<div class="w1200 posrel">
+			<a href="/index/" class="logo"><img src="static/img/logo.png" alt="" /></a>
+			<div class="nav">
+				<ul>
+					<li><a href="#">首页</a></li>
+					<li><a href="#">推荐</a></li>
+					<li><a href="#">排行榜</a></li>
+					<li><a href="#">新碟上架</a></li>
+					<li><a href="#">音乐人</a></li>
+					<li><a href="/playlist/">我的音乐</a></li>
+					<li><a href="/login/">登录</a></li>
+					<li><a href="/zhuce/">注册</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div style="text-align:center;vertical-align:middel;">
+        <form action="/ying/" method="get">
+            <input class="ts" type="text" placeholder="请输入搜索内容" name="keywords">
+            <input type="submit" value="搜一下">
+        </form>
+    </div>
+    <table width="100%" style="font-size:25px;">
+        <thead>
+            <tr align="center">
+                <th>歌曲名称</th>
+                <th>歌曲作者</th>
+                <th>专辑</th>
+            </tr>
+        </thead>
+        <tbody style="font-size:25px;">
+        {% for info in infos %}
+            <tr>
+                <td align="center">
+                    <a href="/goodinfo/?mname={{info.mname}}&uid={{uid}}"> {{info.mname}}</a>
+                </td>
+                <td align="center">{{info.pname}}</td>
+                <td align="center">{{info.tname}}</td>
+            </tr>
+         {% endfor %}
+         </tbody>
+    </table>
+
+</body>
+</html>
